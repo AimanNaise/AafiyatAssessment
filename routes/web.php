@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class,'form'])->name('index.form'); 
+Route::post('/saveform', [UserController::class,'save'])->name('save.form');
+Route::get('/table', [UserController::class, 'table'])->name('index.table');
+Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete.form');
