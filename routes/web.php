@@ -2,18 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', [UserController::class,'form'])->name('index.form'); 
-Route::post('/saveform', [UserController::class,'save'])->name('save.form');
+
+
+// Route to display the form
+Route::get('/', [UserController::class, 'form'])->name('index.form');
+
+// Route to save form data
+Route::post('/saveform', [UserController::class, 'save'])->name('save.form');
+
+// Route to display the table with active users
 Route::get('/table', [UserController::class, 'table'])->name('index.table');
+
+// Route to soft delete a user
 Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete.form');

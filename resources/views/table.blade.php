@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table Page</title>
 
+    
     <style>
+        
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
@@ -13,11 +16,13 @@
             padding: 0;
         }
 
+        
         h1 {
             text-align: center;
             color: #333;
         }
 
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -30,14 +35,17 @@
             text-align: left;
         }
 
+       
         th {
             background-color: #f2f2f2;
         }
 
+        
         tr:hover {
             background-color: #f5f5f5;
         }
 
+        
         button {
             padding: 10px 20px;
             background-color: #4caf50;
@@ -47,14 +55,16 @@
             cursor: pointer;
         }
 
+        
         a {
             text-decoration: none;
         }
 
+        
         .success-message {
-           color: #155724;
-           background-color: #d4edda;
-           border-color: #c3e6cb;
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
@@ -71,14 +81,20 @@
     </style>
 </head>
 <body>
+    <!-- Main heading -->
     <h1>Table Page</h1>
-    @if(session('success'))
-    <div class="success-message">{{ session('success') }}</div>
-@endif
 
-@if(session('error'))
-    <div class="error-message">{{ session('error') }}</div>
-@endif
+    <!-- Display success & error message -->
+    @if(session('success'))
+        <div class="success-message">{{ session('success') }}</div>
+    @endif
+
+    
+    @if(session('error'))
+        <div class="error-message">{{ session('error') }}</div>
+    @endif
+
+    <!-- Table for displaying user data -->
     <table>
         <thead>
             <tr>
@@ -92,6 +108,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through active users and display in the table -->
             @foreach($activeusers as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
@@ -101,8 +118,8 @@
                     <td>{{ \Carbon\Carbon::parse($user->birthday)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}</td>
                     <td>
+                        <!-- Link to delete user with confirmation -->
                         <a href="{{route('delete.form',$user->id)}}"  onclick="return confirm('Are you sure you want to delete this user?')">
-                            
                             <button type="submit">Delete</button>
                         </a>
                     </td>
@@ -111,8 +128,10 @@
         </tbody>
     </table>
     <br>
-<center>
-    <a href="{{route('index.form')}}"><button>Go to Form Page</button></a>
-</center>
+
+    <!-- link to go to Form Page -->
+    <center>
+        <a href="{{route('index.form')}}"><button>Go to Form Page</button></a>
+    </center>
 </body>
 </html>
